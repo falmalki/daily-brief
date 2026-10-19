@@ -685,6 +685,12 @@ function copy(t){if(navigator.clipboard&&window.isSecureContext){return navigato
 function card(el){return el.closest('.card')}
 function txt(e){return e?e.textContent.replace(/\s+/g,' ').trim():''}
 /* full saved item (survives rebuilds: content is stored, not just the id) */
+/* also queue saves for Bookmark Librarian -> Notion «مكتبة الإعجابات» (localStorage stays the primary store) */
+var LIB_URL='https://likes-save.fai392392.workers.dev/save',LIB_TOKEN='DvIZ0_VIbBBxoljJezcBYbP47hlRMtWT';
+function lib(it){var m=/\/status(?:es)?\/(\d{5,25})/.exec(it.url||'');if(!m)return;
+  var t=[it.title,it.tweet_text||it.summary_ar].filter(Boolean).join('\n\n');
+  try{fetch(LIB_URL,{method:'POST',mode:'cors',keepalive:true,headers:{'content-type':'application/json','x-save-token':LIB_TOKEN},
+    body:JSON.stringify({id:m[1],text:t.slice(0,8000),date:String(it.date||'').slice(0,10),url:it.url,topic:it.section||'',pile:'نشرة تويتر اليومية'})}).catch(function(){})}catch(e){}}
 function info(c){var tw=c.classList.contains('tw'),h3=$('h3',c),sm=null;
   if(!tw){$$(':scope > p',c).forEach(function(p){if(!sm&&!p.classList.contains('dek'))sm=p})}
   var title=h3?txt(h3):(c.dataset.title||''),au=c.dataset.author||'';
@@ -719,7 +725,7 @@ var clipA=null,clipB=null;function stopClip(){if(clipA){clipA.pause();clipA=null
 function playClip(b){var same=clipB===b;stopClip();if(same)return;$$('audio').forEach(function(x){x.pause()});clipA=new Audio(b.dataset.audio);clipB=b;b.setAttribute('aria-pressed','true');b.classList.add('playing');
   clipA.onended=stopClip;clipA.onerror=function(){stopClip();toast('تعذّر تشغيل المقطع الصوتي')};clipA.play().catch(function(){stopClip()})}
 D.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var c=card(b);if(!c)return;var it=info(c),a=b.dataset.act;
-  if(a==='save'){if(saved[it.id]){delete saved[it.id];toast('أُزيل من محفوظاتي')}else{saved[it.id]=it;toast('حُفظ في محفوظاتي')}put('xd-saved',saved);drawer()}
+  if(a==='save'){if(saved[it.id]){delete saved[it.id];toast('أُزيل من محفوظاتي')}else{saved[it.id]=it;toast('حُفظ في محفوظاتي');lib(it)}put('xd-saved',saved);drawer()}
   else if(a==='copy'){copy(it.h+'\n'+it.url).then(function(){toast('نُسخ العنوان والرابط')})}
   else if(a==='share'){if(navigator.share){navigator.share({title:it.h,url:it.url}).catch(function(){})}else{copy(it.h+'\n'+it.url).then(function(){toast('المشاركة غير متاحة؛ نُسخ الرابط')})}}
   else if(a==='listen'){playClip(b);return}
