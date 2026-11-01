@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>نشرة تويتر اليومية — الأحد 1 نوفمبر 2026</title><style>
+<!doctype html><html lang="ar" dir="rtl"><head><meta name="issue-date" content="2026-11-01"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>نشرة تويتر اليومية — الأحد 1 نوفمبر 2026</title><style>
 body{font-family:"Noto Naskh Arabic","Amiri","Noto Sans Arabic",serif;background:#f7f4ee;color:#1d1d1d;margin:0;line-height:1.95;font-size:18px}
 main{max-width:760px;margin:auto;padding:24px 20px 60px}
 header{text-align:center;border-bottom:3px double #333;padding-bottom:10px}
@@ -42,7 +42,7 @@ function sf(f){['s','m','l','xl'].forEach(function(x){d.classList.remove('fs-'+x
 function st(){var on=d.classList.contains('dark');k.textContent=on?'☀️':'🌙';k.title=on?'الوضع النهاري':'الوضع الليلي';k.setAttribute('aria-pressed',on)}
 B.forEach(function(b){b.onclick=function(){sf(b.dataset.fs)}});k.onclick=function(){d.classList.toggle('dark');localStorage.setItem('db-theme',d.classList.contains('dark')?'dark':'light');st()};
 sf(localStorage.getItem('db-fs')||'m');st()})()</script><div id="itoast" role="status" aria-live="polite"></div><script>(function(){
-var SAVE='https://likes-save.fai392392.workers.dev',TOK='DvIZ0_VIbBBxoljJezcBYbP47hlRMtWT',ED=(document.title.split('— ')[1]||'');
+var SAVE='https://likes-save.fai392392.workers.dev',TOK='DvIZ0_VIbBBxoljJezcBYbP47hlRMtWT',ED=((document.querySelector('meta[name=issue-date]')||{}).content||new Date().toISOString().slice(0,10));
 var SKIP=/ملاحظة المحرر|ماذا تنتظر|ماذا يستحق المتابعة|أداة أو فكرة/;
 function toast(m){var t=document.getElementById('itoast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on')},1600)}
 function clean(n){var c=n.cloneNode(true);c.querySelectorAll('.iact').forEach(function(x){x.remove()});return c.innerText.replace(/\s+\n/g,'\n').trim()}
