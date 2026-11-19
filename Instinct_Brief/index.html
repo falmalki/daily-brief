@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="issue-date" content="2026-11-19">
-<title>ما يستحق أن أعرفه اليوم — الخميس 19 نوفمبر 2026</title>
+<title>ما يستحق أن أعرفه اليوم - الخميس 19 نوفمبر 2026</title>
 <style>
 @font-face{font-family:"Plex Arabic";src:url("../fonts/plex-ar-arabic-400.woff2") format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:"Plex Arabic";src:url("../fonts/plex-ar-arabic-700.woff2") format("woff2");font-weight:700;font-display:swap}
 *{box-sizing:border-box}
-body{font-family:"Plex Arabic","Noto Naskh Arabic","Amiri",sans-serif;background:#f5f2ec;color:#1d1d1d;margin:0;line-height:1.9;font-size:17px}
+body{font-family:"Plex Arabic","Noto Naskh Arabic","Amiri",sans-serif;background:#f5f2ec;color:#1d1d1d;margin:0;line-height:1.9;font-size:18px}
 main{max-width:720px;margin:auto;padding:20px 16px 64px}
 header{text-align:center;padding:18px 0 14px;border-bottom:3px double #8a6d3b;margin-bottom:8px}
 h1{font-size:30px;margin:0 0 4px}
@@ -19,12 +19,15 @@ h2{font-size:21px;color:#5d3f14;border-bottom:1px solid #cdb893;padding-bottom:4
 .card{display:flex;gap:12px;background:#fff;border-radius:10px;box-shadow:0 1px 4px #0001;padding:14px 16px;margin:12px 0}
 .num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:#1d1d1d;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;margin-top:4px}
 .body{flex:1}
-h3{margin:0 0 4px;font-size:18px;line-height:1.6}
+h3{margin:0 0 4px;font-size:1.05em;line-height:1.6}
 p{margin:0 0 6px;color:#333}
 a.src{color:#0b5394;font-size:13.5px;word-break:break-all;text-decoration:none;border-bottom:1px dotted #0b5394;display:inline-block;direction:ltr;unicode-bidi:embed}
 a.src:hover{background:#eef4fb}
 footer{margin-top:36px;border-top:1px solid #d8cfbd;padding-top:10px;font-size:13px;color:#6b6252;text-align:center}
-@media (max-width:480px){body{font-size:16px}h1{font-size:25px}}
+.fontctl{margin-top:10px;font-size:13px;color:#6b6252}
+.fontctl button{font-family:inherit;font-size:13px;border:1px solid #b7a67f;background:#fff;color:#5d3f14;border-radius:14px;padding:2px 12px;margin:0 2px;cursor:pointer}
+.fontctl button.on{background:#7a4b1e;color:#fff;border-color:#7a4b1e}
+@media (max-width:480px){h1{font-size:25px}}
 </style>
 </head>
 <body>
@@ -33,6 +36,11 @@ footer{margin-top:36px;border-top:1px solid #d8cfbd;padding-top:10px;font-size:1
     <h1>ما يستحق أن أعرفه اليوم</h1>
     <div class="meta">الخميس 19 نوفمبر 2026</div>
     <div class="count">14 مادة</div>
+    <div class="fontctl">حجم الخط:
+      <button type="button" data-s="16">صغير</button>
+      <button type="button" data-s="18" class="on">متوسط</button>
+      <button type="button" data-s="21">كبير</button>
+    </div>
   </header>
   <section>
     <h2>⭐ أهم 3</h2>
@@ -162,12 +170,28 @@ footer{margin-top:36px;border-top:1px solid #d8cfbd;padding-top:10px;font-size:1
       <div class="num">14</div>
       <div class="body">
         <h3>سادس أيام «الثريا - الربيع»</h3>
-        <p>نواصل اليوم سادس أيام نجم «الثريا - الربيع» ويستمر حتى 25 نوفمبر (14-25 نوفمبر)، وهو اليوم الثاني عشر من موسم الربيع البالغ 122 يوماً (تواريخ محسوبة بدورة 364 يوماً). وبحسب الحساب الزراعي تلائم أيام الثريا زراعة الشعير والحنطة والحلبة، وفي تهامة تُزرع الخضروات والحبحب مع التحذير من الندى على الذرة.</p>
+        <p>نواصل اليوم سادس أيام نجم «الثريا - الربيع» ويستمر حتى 25 نوفمبر (<bdi dir="ltr">14-25</bdi> نوفمبر)، وهو اليوم الثاني عشر من موسم الربيع البالغ 122 يوماً (تواريخ محسوبة بدورة 364 يوماً). وبحسب الحساب الزراعي تلائم أيام الثريا زراعة الشعير والحنطة والحلبة، وفي تهامة تُزرع الخضروات والحبحب مع التحذير من الندى على الذرة.</p>
         
       </div>
     </article>
   </section>
   <footer>يُحدَّث يومياً · الموجز الصباحي</footer>
 </main>
+<script>
+(function(){
+  var KEY='instinct-brief-font-size';
+  function apply(v){
+    document.body.style.fontSize=v+'px';
+    try{localStorage.setItem(KEY,v)}catch(e){}
+    var bs=document.querySelectorAll('.fontctl button');
+    for(var i=0;i<bs.length;i++){bs[i].classList.toggle('on',bs[i].getAttribute('data-s')===String(v))}
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY)}catch(e){}
+  if(saved){apply(saved)}
+  var bs=document.querySelectorAll('.fontctl button');
+  for(var i=0;i<bs.length;i++){bs[i].onclick=(function(b){return function(){apply(b.getAttribute('data-s'))}})(bs[i])}
+})();
+</script>
 </body>
 </html>
